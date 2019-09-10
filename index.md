@@ -2,7 +2,7 @@
 
 ### 9.11 Assignment 
 
-Learning can be Fun: How “Migrate” is helping to shift perceptions on the migrant crisis in Europe 
+''Learning can be Fun: How “Migrate” is helping to shift perceptions on the migrant crisis in Europe'' 
 
 It is no surprise that data science and the various academic fields which use it can have significant impacts on society as a whole: what we believe, how we think, the morals we assign to those thoughts, etc. This agenda of societal reshaping, rethinking, and redefining is clearly present in “Migrate”, an online trivia game meant to raise awareness around the migrant crisis in Europe. This project came out specifically as an educational tool, which hopes to end some of the stigma and perceptions around immigration and immigrants in Europe. “Migrate” achieves their ultimate goal of educating the public through “gamification”, or the use of game-design elements to create a fun, playful, and user-friendly software to encourage a higher level of user interaction.
 	
@@ -11,6 +11,3 @@ While gamification is one reason that “Migrate” was well-received by the pub
 The original article can be found at: https://www.int-arch-photogramm-remote-sens-spatial-inf-sci.net/XLII-4-W2/51/2017/isprs-archives-XLII-4-W2-51-2017.pdf 
 
 
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
