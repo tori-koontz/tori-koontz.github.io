@@ -1,1 +1,1 @@
-You can access my Distance and Direction model for QGIS [here](cbd_model_1.model3)
+You can access my Distance and Direction model for QGIS [here](Dist_DirModelUPLOAD.model3)
