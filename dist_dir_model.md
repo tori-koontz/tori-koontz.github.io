@@ -1,1 +1,1 @@
-You can access my Distance and Direction model for QGIS [here](Dist_DirModelUPLOAD.model3)
+You can access my Distance and Direction model for QGIS [here](DistDir_modelUPDATED.model3)
