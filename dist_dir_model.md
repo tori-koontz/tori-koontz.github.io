@@ -6,4 +6,4 @@ For my data, I used the following [geopackage](BostonMetro_tracts.gpkg), which f
 
 
 
-Back to [index](index.med)
+Back to [index](index.md)
