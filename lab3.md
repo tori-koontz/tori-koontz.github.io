@@ -30,3 +30,8 @@ Now that we had a mosaic layer without sinks, we could run Hydrology analysis to
 Now we can run a tool called "Channel Network", which maps out the hydrology network of the area. This is the result I got: 
 
 ![channel network](ChannelNetwork.png)
+
+
+
+
+Back to [home](index.md)
