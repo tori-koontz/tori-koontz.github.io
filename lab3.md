@@ -4,7 +4,7 @@ This week in lab, we used digital elevation model data to analyze various terrai
 
 As a first step, we access either ASTER or SRTM data from www.earthdata.nasa.gov . I decided to use SRTM data and selected data from the two tiles containg Mt. Kilimanjaro, identified by lower left coordinates S03E037 and s04E037. I downloaded the two files and opened them using SAGA. 
 
-Once in SAGA, I ran the Mosaicking tool in order to create4 one, smooth image combining the two data files. 
+Once in SAGA, I ran the Mosaicking tool in order to create one, smooth image combining the two data files. 
 ![Step 1: Mosaic](Mosaic_1.png) 
 
 Next, we changed the projection to the correct UTM zone so as to be able to perform linear calculations accurately. After, we utilized the "Analytical Hillshading" tool in SAGA to better see the terrain and where light would hit it at different angles/different times of day. 
