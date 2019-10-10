@@ -46,18 +46,21 @@ This image shows the regions of error or uncertainty within the SRTM's data of M
 This next image is the .num file for ASTER data of Mt. Kili. There was quite a bit of error in the north. 
 ![ASTER num](AS_num_analysis.png)
 
-Next, we used SAGA's Grid Difference tool to show regions of diversion within the ASTER and SRTM outputs, shown here: 
-  -I haven't created this yet-
-  
-After that, we pulled the two data outputs into QGIS to more closely examine potential causes of error. 
+Next, we used SAGA's Grid Difference tool to show regions of diversion within the ASTER and SRTM outputs. This next image shows the difference of starting elevation models. Here we can see that northern region that could be causing some troubles in terms of error: 
 
--some more stuff here I haven't finsished-
+![elevation difference](GridDiff_elevationmodels.png)
 
+The darker red sections to the north and then right on the mountain itself align with higher levels of uncertainty, which is unsurprising and is also shown in the .num files. Additionally, here is the difference between resulting Flow Accumulation output:
+
+![Flow difference](GridDiff_flowaccu3.png)
+
+ 
 
 
 Data sources: 
 www.earthdata.nasa.gov
 SAGA 6.2
+QGIS 3.8.1
 
 
 
