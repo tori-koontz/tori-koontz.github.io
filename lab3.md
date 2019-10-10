@@ -32,6 +32,18 @@ Now we can run a tool called "Channel Network", which maps out the hydrology net
 ![channel network](ChannelNetwork.png)
 
 
+## Lab 4: DEM Analysis using Batch Script Processing 
+
+In our next lab, we focused on completing the same set of tools and analyses (Mosaic, Sink Detection, sink fill, flow accumulation, channel network), only this time we wrote a batch script in order to run the tool. You can access the script [here](). 
+
+As a note, this tool took quite a long time to run; multiple hours for the last tool alone. The channel network that was created was incredibly detailed, perhaps too much so, which is my guess as to why the tool crawled at a grueling pace. In the future, I would only use this tool on a smaller, more specified area, and would consider increasing the threshold for which streams to classify. 
+
+One additional resource we used were the .num files for both ASTER and SRTM data. These .num files show error, which is important to consider when running analysis. 
+
+This image shows the regions of error or uncertainty within the SRTM's data of Mt. Kilimanjaro. 
+![SRTM num]()
+
+
 
 
 Back to [home](index.md)
