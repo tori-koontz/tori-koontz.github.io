@@ -16,13 +16,33 @@ This next image is the .num file for ASTER data of Mt. Kili. There was quite a b
 ![ASTER num](ASTER_num.png) ![Aster num legend](ASTER_num_legend.png)
 
 
+SAGA has a tool called Analytical Hillshade, which is really helpful for vizualizing terrain. Looking at the following ASTER and SRTM hillshade files, respectively, we can see that there doesn't seem to be any areas that look drastically different.
+
+![ASTER hillshade](hillshade.png)
+
+![SRTM hillshade](srtm_hillshade.png)
+
+
 Next, we used SAGA's Grid Difference tool to show regions of diversion within the ASTER and SRTM outputs. This next image shows the difference of starting elevation models. Areas in darker blue represent areas in which ASTER data reported higher elevations, while whiter regions show where SRTM reported higher numbers. This helps us contextualize the regions of error we see in the .num files.
 
 ![elevation difference](griddiff_elevation.png) ![elevation diff legend](griddiff_elevation_legend.png)
 
-The darker red sections to the north and then right on the mountain itself align with higher levels of uncertainty, which is unsurprising and is also shown in the .num files. Additionally, here is the difference between resulting Flow Accumulation output:
 
-![Flow difference](GridDiff_flowaccu3.png)
+This lab was focusing on recreating the outputs and analyses of the previous lab, which can be accessed under my "lab 3" page, and the following are some of the outputs I got through running batch script. It took awhile to find all the parameters in the code, and my biggest problem in this lab came from misinterpretting the setting options for flow accumulation, in which I had the computer calcultating at a much smaller threshold for creating streams, which increased computing effort tenfold and took hours to run. I eventually figured out the problem and the rest ran smoothly. 
+
+ASTER data Channel Network output:
+
+![ASTER chnl network](channelnetwork.png) ![AS_network legend](channelnetwork_legend.png)
+
+And for SRTM data: 
+
+![SRTM channel](srtm_channelnetwork.png) ![legend](srtm_channelnetwork_legend.png)
+
+I also put the hillshading onto these channel networks to better help the vizualization. This is the one using ASTER, followed by the one for SRTM. 
+
+![ASTER hillshade chnl](networkhillshade.png)
+
+![SRTM hill chnl](srtm_hillshadenetwork.png)
 
  
 
