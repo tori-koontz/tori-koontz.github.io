@@ -9,3 +9,5 @@ This is a page for my work in GEOG 323: Open Source GIS in the fall semester.
 [Lab 3: Global Digital Elevation Models](lab3.md)
 
 [Lab 4: Continuing from lab 3 using Batch Script](lab3.md)
+
+[Lab 5/6: Urban Resiliency in Dar Es Salaam](lab6.md)
