@@ -50,7 +50,7 @@ For ASTER
 ![Aster 3d](networkhillshade3D.png)
 
 And SRTM 
-![srtm 3d](srtm_networkdhillshade3D.png)
+![srtm 3d](srtm_networkhillshade3D.png)
 
  
 
