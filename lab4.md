@@ -16,14 +16,14 @@ This next image is the .num file for ASTER data of Mt. Kili. There was quite a b
 ![ASTER num](ASTER_num.png) ![Aster num legend](ASTER_num_legend.png)
 
 
-SAGA has a tool called Analytical Hillshade, which is really helpful for vizualizing terrain. Looking at the following ASTER and SRTM hillshade files, respectively, we can see that there doesn't seem to be any areas that look drastically different.
+SAGA has a tool called Analytical Hillshade, which is really helpful for vizualizing terrain. Looking at the following ASTER and SRTM hillshade files, respectively, we can see that there doesn't seem to be any areas that look drastically different. However, it does show some textural differences in that the SRTM hillshade is smoother, which could explain the trend of ASTER data, rather than SRTM data, reporting higher elevations which we see with the Grid Difference tool.
 
 ![ASTER hillshade](hillshade.png)
 
 ![SRTM hillshade](srtm_hillshade.png)
 
 
-Next, we used SAGA's Grid Difference tool to show regions of diversion within the ASTER and SRTM outputs. This next image shows the difference of starting elevation models. Areas in darker blue represent areas in which ASTER data reported higher elevations, while whiter regions show where SRTM reported higher numbers. This helps us contextualize the regions of error we see in the .num files.
+Next, we used SAGA's Grid Difference tool to show regions of diversion within the ASTER and SRTM outputs. This next image shows the difference of starting elevation models. Areas in darker blue represent areas in which ASTER data reported higher elevations, while whiter regions show where SRTM reported higher numbers. This helps us contextualize the regions of error we see in the .num files and the hillshading.
 
 ![elevation difference](griddiff_elevation.png) ![elevation diff legend](griddiff_elevation_legend.png)
 
@@ -43,6 +43,14 @@ I also put the hillshading onto these channel networks to better help the vizual
 ![ASTER hillshade chnl](networkhillshade.png)
 
 ![SRTM hill chnl](srtm_hillshadenetwork.png)
+
+SAGA also has a really cool 3D option to create better vizualizations of data. I took the last two hillshades and applied a 3D view to them and received the following images: 
+
+For ASTER
+![Aster 3d](networkhillshade3D.png)
+
+And SRTM 
+![srtm 3d](srtm_networkdhillshade3D.png)
 
  
 
