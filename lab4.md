@@ -7,14 +7,18 @@ As a note, this tool took quite a long time to run, as creating a channel networ
 One additional resource we used were the .num files for both ASTER and SRTM data. These .num files show error, which is important to consider when running analysis. 
 
 This image shows the regions of error or uncertainty within the SRTM's data of Mt. Kilimanjaro. Everything in beige represents SRTM data, while other colored areas represent uncertainty; the legend shows which data sorce was used to pull in data to account for that. Of most importance are the areas in red, where this SRTM file used ASTER data to account for error. 
+
 ![SRTM num](srtm_num.png) ![SRTM num legend](srtm_num_legend.png)
 
+
 This next image is the .num file for ASTER data of Mt. Kili. There was quite a bit of error in the south, and SRTM data was pulled in for that area. However, this file seems to show less error overall. 
+
 ![ASTER num](ASTER_num.png) ![Aster num legend](ASTER_num_legend.png)
 
-Next, we used SAGA's Grid Difference tool to show regions of diversion within the ASTER and SRTM outputs. This next image shows the difference of starting elevation models. Here we can see that northern region that could be causing some troubles in terms of error: 
 
-![elevation difference](GridDiff_elevationmodels.png)
+Next, we used SAGA's Grid Difference tool to show regions of diversion within the ASTER and SRTM outputs. This next image shows the difference of starting elevation models. Areas in darker blue represent areas in which ASTER data reported higher elevations, while whiter regions show where SRTM reported higher numbers. This helps us contextualize the regions of error we see in the .num files.
+
+![elevation difference](griddiff_elevation.png) ![elevation diff legend](griddiff_elevation_legend.png)
 
 The darker red sections to the north and then right on the mountain itself align with higher levels of uncertainty, which is unsurprising and is also shown in the .num files. Additionally, here is the difference between resulting Flow Accumulation output:
 
