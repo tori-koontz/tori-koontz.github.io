@@ -8,12 +8,12 @@
   
   This graph shows indexed "sentiment scores" as they correspond with different land uses in MA. It seems to show that spaces marked as "commercial" and "public" tend to feature more positive/happy tweets, while spaces such as farmland and transportation show quite negative public sentiment. 
   
-  ![image1](landuse.jpg)
+  ![image1](landuse.png)
   
   It is also worth pointing out how they created their index of sentiment, as it can seem quite difficult to create a relative score of emotion using only data. The authors utilized the IBM Watsom Alchemy API, which is capable of cloud-based language processing. Its linguistic analysis is able to analyse a tweet's composition and search for certain words linked to either positive or negative emotions. From there, it gave a "sentiment score" from -1 (extremely negative) to 1 (extremely positive), with 0 marking a neutral sentiment. They also created a "Net Sentiment Rate" from the cumulative score of all their tweets, which was -0.065. Because of the API engine they used, I am unsure how reproducible their method of analysis would be. 
   
   Another variable analyzed was time, as shown in the following graph: 
   
-  ![image2](timeofday.jpg)
+  ![image2](timeofday.png)
   
   Together with the sentiment score spatially analyzed in relation to land use and time of day, we can start to see patterns of human sentiment and emotion regarding their built and lived experience in cities. This to me seems an extremely valuable use of social media data, as I mentioned previously. Many of the correlations shown in this data make a lot of sense, and could be used to help better understand public opinion and improving urban infrastructure. 
