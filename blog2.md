@@ -17,3 +17,7 @@
   ![image2](timeofday.png)
   
   Together with the sentiment score spatially analyzed in relation to land use and time of day, we can start to see patterns of human sentiment and emotion regarding their built and lived experience in cities. This to me seems an extremely valuable use of social media data, as I mentioned previously. Many of the correlations shown in this data make a lot of sense, and could be used to help better understand public opinion and improving urban infrastructure. 
+  
+  
+  
+  [home page](index.md)
