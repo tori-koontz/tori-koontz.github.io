@@ -24,7 +24,7 @@ For our project, we performed a Quick OSM search for all OSM tags like "wetland"
 
 After we created a map of these steps, we also worked with interactive mapping tools this week, like Leaflet. This is a really cool program which allows you to vizually present your analysis and then post it to easily-accesible web pages to make sharing your work that much simpler. Using html code and editing it to display our resilience map how we'd like, we created an interactive web map that anyone can check out. An important note: any vizualizations you've created in QGIS, like color schemes, will not automatically enter in to the html code created by the Leaflet plugin. You will need to edit the given HTML code to add all the information you want into the map. In addition to that, there are numerous other features you can write into the script to create your desired map output. Check out https://leafletjs.com/reference-1.5.0.html for more information. 
 
-Take a look at our final map [here](dsmmap/dsm_index.html)
+Take a look at our final map [here](map3/index.html)
 
 
 
