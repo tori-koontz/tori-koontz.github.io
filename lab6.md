@@ -1,6 +1,6 @@
 ## Lab 7: SQL and Resilience in Dar Es Salaam 
 
-Access our SQL [here](lab06_final.sql) 
+Access our SQL [here](lab06_final (4).sql) 
 
 This week, we used data downloaded from Resilience Academy, a Ramania Huria project, to analyze urban resilience in Dar Es Salaam. As one of the most mapped cities in the world, we are taking advantage of the wealth of qualitative and quantitaive, locally-collected and analyzed data to start creating our own models of urban resilience. I worked with a partner, and our research question concerned analyzing an aspect of flood risk, percentage of subward area in the floodplain, to the various subwards in Dar es Salaam. From downloading the data that interested us to writing SQL to producing our final interactive maps, below are the step-by-step processes for this lab.
 
