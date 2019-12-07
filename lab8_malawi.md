@@ -7,3 +7,4 @@ Over the course of two weeks, our class discussed critical ideas of reproducibil
 
 Malcolm's methods for measuring household resilience: 
 
+![image1](MalcolmWeights.png)
