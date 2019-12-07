@@ -9,7 +9,7 @@ Malcolm's methods for measuring household resilience:
 
 And his final map:
 
-![malcombmap)[MalcombMap.png)
+![map](MalcombMap.png)
 
 ### Methods 
 
@@ -24,6 +24,15 @@ Before I go into the methods, it is important to note that our methodology is on
 
 The first part of creating the final end result is to calculate the "Adaptive Capacity", which uses DHS Survey data and creates a way to weight each factor according to importance. First, we used DHS metadata to isolate all the variables represented in Malcom's methodology. We found them all, but ran into another problem of reproducibility in the fact that many of the "Access" factors, like owning a radio, were measured with either a 0 or 1, for yes/no. Malcomb was not clear in his work how he tranformed these 0/1 values into a quantile scale to fit in with the rest of the data. 
 
-As a class, we worked to draft an [SQL code](https://github.com/GIS4DEV/GIS4DEV.github.io/tree/master/mwi) for classifying each variable and ranking it as a quantile. In addition to ranking, the code includes steps for deleting missing data and other joins. 
+As a class, we worked to draft an [SQL code](https://github.com/GIS4DEV/GIS4DEV.github.io/tree/master/mwi) for rescaling each variable and ranking it as a quantile. In addition to ranking, the code includes steps for deleting missing data and other joins.
 
+The next part to Malcomb's final calculation is including UNEP Global Risk data on exposure, via flood and drought data. When we downloaded the raster files from UNEP's website, they did not match up and had to be rescaled to fit the 1-5 quantile ranking. I accomplished that by using GDAL's Warp tool, and then by using GRASS functions like r.Quantile and r.Recode. The layers also need to be clipped to include only relevant data, which can be done using the GDAL Clip by Extent.
+
+Next, we needed to convert the layer with adaptive capacity (henceforth called "capacity") to a raster, which can be accomplished using GDAL's Rasterize tool. Once all three layers (capacity, flood, and drought) were in the same format (CRS, cell size, quantile rank), we can run Professor Holler's Vulverability model, which incorporates our SQL code and produces three layers, identical in dimension/classification, for capacity, flood, and drought. 
+
+This is my map which shows the adaptive capacity rank for each Traditional Authority:
+
+![map2](malawi_scores.png)
+
+Next, we used Raster calculator ...
 
