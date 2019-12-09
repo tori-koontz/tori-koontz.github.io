@@ -34,5 +34,9 @@ This is my map which shows the adaptive capacity rank for each Traditional Autho
 
 ![map2](malawi_scores.png)
 
-Next, we used Raster calculator ...
+Next, we used Raster calculator to combine the three raster layers, according to the weighting done in the Malcomb methodology. He lists his final calculation as Assets + Access + Livelihood - Exposure. However, we needed to remember that the various quantile ranks don't exactly correlate: A high score for Assets/Access means lower vulnerability, whereas a high ranking for the flood and drought layers correlates to higher vulnerability. As such, our calculation for combining the layers was (2-(Capacity * 0.4) + (Drought * 0.2) + (Flood * 0.2)). This output gave me my final map of vulnerability: 
+
+![finalmap](totalvulnerability.png)
+
+### Discussion
 
