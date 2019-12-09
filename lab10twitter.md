@@ -28,7 +28,7 @@ Finally, we normalized the data in order to protect privacy, and displayed tweet
 
 (doriantweets - novembertweets * 1.0) / (doriantweets + novembertweets)
 
-Now that we had a normalized activity rate that was geographically indexed, we could begin analysis. This was performed through the desktop application of Geo Da, and we were able to calculate a spatial weight matrix and the G* statistic (both as functions within GeoDa), which produced a map of significant areas of tweet activity. The significance map aligned with our expected results and showed high levels of significance along the southeastern coast, in states such as Florida, Alabama, and the Carolinas. 
+Now that we had a normalized activity rate that was geographically indexed, we could begin analysis. This was performed through the desktop application of Geo Da, and we were able to calculate a spatial weight matrix and the G* statistic (both as functions within GeoDa), which produced [this map](tweetgeoda.png) of significant areas of tweet activity. The significance map aligned with our expected results and showed high levels of significance along the southeastern coast, in states such as Florida, Alabama, and the Carolinas. 
 
 Finally, we ran the Heatmap/Kernel Density tool in QGIS to create a map of Twitter activity hotspots during the storm. This was our final result: 
 
