@@ -20,6 +20,11 @@ Data sources:
 4. UNEP Global Risk Platform data for flood risk and drought exposure 
 5. FEWSnet Livelihood Zones
 
+Platforms and tools: 
+QGIS 3.8.1 
+GDAL (as plugins)
+GRASS (as plugins)
+
 Before I go into the methods, it is important to note that our methodology is only able to account for 80% of Malcomb's final map, as he uses FEWSnet data that is not open and accessible for public use. This is the most glaring problem with reproducibility, and others will be referenced later. 
 
 The first part of creating the final end result is to calculate the "Adaptive Capacity", which uses DHS Survey data and creates a way to weight each factor according to importance. First, we used DHS metadata to isolate all the variables represented in Malcom's methodology. We found them all, but ran into another problem of reproducibility in the fact that many of the "Access" factors, like owning a radio, were measured with either a 0 or 1, for yes/no. Malcomb was not clear in his work how he tranformed these 0/1 values into a quantile scale to fit in with the rest of the data. 
@@ -39,4 +44,14 @@ Next, we used Raster calculator to combine the three raster layers, according to
 ![finalmap](totalvulnerability.png)
 
 ### Discussion
+
+Just how similar are the two maps to Malcomb's published results? My final map output closely resembles Malcomb's in terms of classification, but with some key distinctions. The most striking departure is in the northern region of Malawi, where Malcomb's map reports generally low vulnerbaility across large swaths of the country. However, our map paints a very different picture of vulnerability and risk analysis, with overall higher reported scores and much more variation not only within the north, but also throughout the whole map. Much of this is most likely due to the fact that our map could only ever be 80% of Malcomb's, as we did not have access to all his data. That, combined with a vague methodology created challenges for us as we attempted to recreate his work. 
+
+It is hard to assess the level of rigor to which Malcomb adhered to in his methodology, and how critically he examined his metric for vulnerability analysis. I will say that as a model, his workflow makes a lot of comprehensive sense, and seeks to include many variables in an attempt to accurately capture the true level of vulnerability throughout Malawi. This is extremely important when trying to accurately depict risk in vulnerable regions, as such maps often have a lot of influence in impacting government action and investment. 
+
+It is quite obvious that reproducibility was not a main concern of Malcomb et. al. when publishing their findings. This is unsurprising, as the majority of publish scientific work is completely unconcrned by issues of reproducibility and replicability within their results. As we have discussed at length in this class, that is highly problematic. Luckily, though, the standard is shifting as more researchers and even just participants like ourselves in the Open Source GIS world are pushing for more open, equitable, and collaborative work. We as a class are striving to do so by being very detailed about where our data comes from and how we accessed it, what tools we used and in what way, and by attaching our SQL codes and data to public pages like this Github repository. By creating more open source material, we are working towards creating more valuable and scientifically-sound research while also increasing public access to that research. 
+
+
+
+Back to [home](index.md)
 
