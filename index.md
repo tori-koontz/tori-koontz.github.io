@@ -15,3 +15,5 @@ This is a page for my work in GEOG 323: Open Source GIS in the fall semester.
 [Second Blog post: Twitter Use Case](blog2.md)
 
 [Reproducibility Concerns: Malawi lab](lab8_malawi.md)
+
+[Activity Hotspots on Twitter during Hurricane Dorian](lab10twitter.md)
