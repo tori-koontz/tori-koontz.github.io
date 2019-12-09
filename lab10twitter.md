@@ -30,6 +30,24 @@ Finally, we normalized the data in order to protect privacy, and displayed tweet
 
 Now that we had a normalized activity rate that was geographically indexed, we could begin analysis. This was performed through the desktop application of Geo Da, and we were able to calculate a spatial weight matrix and the G* statistic (both as functions within GeoDa), which produced a map of significant areas of tweet activity. The significance map aligned with our expected results and showed high levels of significance along the southeastern coast, in states such as Florida, Alabama, and the Carolinas. 
 
--Last method: heatmap stuff 
+Finally, we ran the Heatmap/Kernel Density tool in QGIS to create a map of Twitter activity hotspots during the storm. This was our final result: 
 
--Discuss results: R graphs, final heatmap
+![finalmap](dorian_heatmap.png)
+
+## Results 
+
+Before creating the final map, we also took advantage of some graphing capabilities within RStudio, which helped us analyze the Twitter data collected before moving into greater spatial analysis operations. Here are counts of the most common words found in the tweets we pulled: 
+
+![wordcount](wordcount.png)
+
+As the graph shows, the two most common words were overwhelmingly "hurricane" and "dorian", followed by other relevant words like "alabama", "bahamas", "storm", and "hurricanedorian", which was most likely a hashtag. However, this graph also helps us understand that, when collecting Twitter data, there can be quite a few outliers that use similar words but are discussing a different topic (or at least different perspective) than the study area. Here we see that this data includes numerous examples referencing "sharpiegate", or President Trump's erroneous map detailed the storm trajectory. Related, but not quite the same. This is one of the major challenges when analyzing raw text pulled from social media, especially on an aggregated level where it is difficult to parse through which is which. It is important to understand that the multifaceted nature of raw text and word use will always be a spot for uncertainty and error in results. 
+
+We also used RStudio to create a network of word associations, which helps us parse through this issue of "Hurricane vs. Sharpiegate" by understanding the relationship between common words. 
+
+![network](wordnetwork.png)
+
+This network analysis helped me feel a bit more confident in using this data to analyze hotspots of activity related to the storm (knowing there were also tweets about the Trump incident). In the more clustered section are all words relevant to our study and seem directly related to the actual storm: "hurricane", "damage", "survived", "efforts" etc. Further out from this central cluster are words relating to Trump or the Sharpie incident, and even further out are words mentioning geographic locations; geography words are more likely to be used together than they are to be used with any other word, which makes a lot of sense when considering names like "Puerto Rico" and "United States". 
+
+And finally, our heatmap correlates to what we saw in Geo Da and also what we were expecting to see: regardless of storm/sharpie references, the activity hotspots for this event were all located along the storm's path on the southeastern U.S. coastline. Plus, after seeing the word count and network graphs from R, we can be more confident in the fact that the data driving these results are more centered on the actual storm than the sharpie incident. 
+
+Back to [home](index.md)
