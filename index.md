@@ -6,10 +6,12 @@ This is a page for my work in GEOG 323: Open Source GIS in the fall semester.
 
 [Distance and Direction Model](dist_dir_model.md)
 
-[Lab 3: Global Digital Elevation Models](lab3.md)
+[Global Digital Elevation Models](lab3.md)
 
-[Lab 4: DEM Batch Script](lab4.md)
+[DEM cont. with Batch Script Processing](lab4.md)
 
-[Lab 5/6: Urban Resiliency in Dar Es Salaam](lab6.md)
+[Urban Resilience in Dar Es Salaam](lab6.md)
 
 [Second Blog post: Twitter Use Case](blog2.md)
+
+[Reproducibility Concerns: Malawi lab](lab8_malawi.md)
