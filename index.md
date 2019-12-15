@@ -17,3 +17,5 @@ This is a page for my work in GEOG 323: Open Source GIS in the fall semester.
 [Reproducibility Concerns: Malawi lab](lab8_malawi.md)
 
 [Activity Hotspots on Twitter during Hurricane Dorian](lab10twitter.md)
+
+[Final Project: Sentiment Analysis of Twitter Data](finalproj.md)
