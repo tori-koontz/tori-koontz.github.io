@@ -6,7 +6,7 @@ Our final project for Open Source GIS was to take our learning one step further 
 
 [R script](cr_twitterscript.R)
 
-[data tables](cr_dataset.final.RData)
+Data tables from Twitter and R (not included to protect privacy of Twitter users)
 
 RStudio 
 
