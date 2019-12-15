@@ -15,14 +15,17 @@ Twitter
 ### Methods 
 
 1. Following along with the R code, we see that the first step after initializing necessary libraries is to connect to Twitter's API and search for relevant tweets. In order to create my first data table, crtweets, I simply searched for every tweet containing the words "costa" AND "rica". After getting these baseline tweets, I then modified my search to include the nature component:
+
   crnature <- search_tweets("costa and rica and (nature OR beach OR environment OR forest OR park)", n=15000, retryonratelimit=FALSE, include_rts=TRUE, token=twitter_token). 
   
 2. Next came unpacking the raw text located in the tweets. When receiving a data set from a Twitter search, the body of the tweets are put into one column, "text", in which the entirety of the tweet is placed. In order to conduct a sentiment analysis, this column has to be deconstructed so that every word is its own column. It is also important to remove "stop words" like and/or/is/etc that contain no value for a sentiment analysis. I accomplished this using the TidyText r package and the "unnest token" function. 
+
     naturetoken <-
   unnest_tokens(crnature,word,text,token="words",format = c("text"),to_lower=TRUE, drop=TRUE,collapse=NULL)%>%
   anti_join(get_stopwords(),by = "word")
   
 3. After every relevant word is displayed in its own row, a sentiment analysis is possible. There are three possible lexicons which can analyze sentiment within the TidyText package. For my purposes, I chose the AFinn lexicon, which gives words a score from -5 (negative) to 5 (positive), as I thought it would be the best for displaying sentiment in a graph. After getting the Afinn sentiment data set, I conducted an inner join to naturetoken to create my final data table, crsentiment. 
+
     afinn_sentiment <-get_sentiments(lexicon =c("afinn"))
 
     crsentiment <- naturetoken %>%
