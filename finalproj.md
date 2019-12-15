@@ -5,8 +5,11 @@ Our final project for Open Source GIS was to take our learning one step further 
 ### Data and code 
 
 [R script](cr_twitterscript.R)
+
 [data tables](cr_dataset.final.RData)
+
 RStudio 
+
 Twitter 
 
 ### Methods 
@@ -45,4 +48,6 @@ After discovering this, I decided to graph the distribution of sentiment values 
 ### Discussion 
 
 Although I was unable to prove my hypothesis that most tweets would refer to Costa Rica as a positive nature reserve, thus showing its perception as a tourist destination, I still think my results are very interesting. Instead of most common tweets being positive, they were actually negative: words like "deforestation" and "conservation" lead me to believe that in fact most Twitter users are talking about the country in regards to its conservation efforts and recovery from deforestation. This comes as a pleasant surprise and hints at cultural shift among younger generations especially to emphasize ecological impacts of climate change and human actions like deforestation in place of a picturesque tropical paradise. 
+
+[home](index.md)
   
