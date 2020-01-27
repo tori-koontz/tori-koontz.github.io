@@ -4,6 +4,17 @@ Here is a working version of my web map for the [Sendero Pacifico](senderopacifi
 Things I would like to fix: 
 
 -Reset Highlight on trails layer so that the highlight is removed when the mouse is no longer on it. 
+One option:
+
+function resetHighlight(obj) 
+     {SenderoPacificotrailnetwork_6L.resetStyle(obj.target)
+     };
+
+Otherwise: 
+
+function resetHighlight(e) {
+  		resetStyle(e.target);
+} 
 
 -Simplify the legend and turn off the Points of Interest layer to start off, or program a function that adds the layer only after a certain zoom layer. 
 
