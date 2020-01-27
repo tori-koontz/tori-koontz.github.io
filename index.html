@@ -1,0 +1,871 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/multi-style-layer.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/BellbirdBiologicalCooridorPjaroCampana_2.js"></script>
+        <script src="data/ProtectedAreasAreasProtegidas_3.js"></script>
+        <script src="data/RiversRios_4.js"></script>
+        <script src="data/RoadsCaminos_5.js"></script>
+        <script src="data/SenderoPacificotrailnetwork_6.js"></script>
+        <script src="data/TownsPueblos_7.js"></script>
+        <script src="data/PointsofInterestPuntodeInteres_8.js"></script>
+        <script>
+        var map = L.map('map', {
+        	 zoomSnap: 0.50,
+            zoomControl:false, maxZoom:17, minZoom:6
+        }).fitBounds([[10.048587471453784,-85.02317864752354],[10.314734323210121,-84.71924092459348]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://tori-koontz.github.io/portfolio" target="_blank">Tori Koontz</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps" target="_blank">Leaflet</a> &middot; <a href="https://qgis.org" target="_blank">QGIS</a>');
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+         function setBounds() {
+        }
+        var layer_OSMStandard_0 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            opacity: 1.0,
+            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
+            minZoom: 6,
+            maxZoom: 17,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        function highlight(obj) {
+			obj.target.setStyle({fillColor: '#000000', fillOpacity: 0.8, color: '#000000', opacity: 0.8});
+}
+//Trouble abounds, starting here! This is an alternate to function lowlightRoutes(obj) {SenderoPacificotrailnetwork_6L.resetStyle(obj.target);}
+		function resetHighlight(e) {
+  		resetStyle(e.target);
+} 
+//Also, when I try and put this function in place of the current OnEachFeature (line 430), it doesn't seem to like it 
+		function onTrail(feature, layer) {
+    labelFeature(feature, layer);
+	layer.on({ mouseover: highlight, mouseout: resetHighlight });
+}
+        layer_OSMStandard_0;
+        map.addLayer(layer_OSMStandard_0);
+        function pop_BellbirdBiologicalCooridorPjaroCampana_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Nombre</strong><br />' + (feature.properties['NOMBRE'] !== null ? Autolinker.link(feature.properties['NOMBRE'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Name</strong><br />' + (feature.properties['name'] !== null ? Autolinker.link(feature.properties['name'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Area in Hectares</strong><br />' + (feature.properties['Area_Ha'] !== null ? Autolinker.link(feature.properties['Area_Ha'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Info</th>\
+                        <td>' + (feature.properties['blurb'] !== null ? Autolinker.link(feature.properties['blurb'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">source</th>\
+                        <td>' + (feature.properties['source'] !== null ? Autolinker.link(feature.properties['source'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_BellbirdBiologicalCooridorPjaroCampana_2_0() {
+            return {
+                pane: 'pane_BellbirdBiologicalCooridorPjaroCampana_2',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(148,209,128,0.5254901960784314)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_BellbirdBiologicalCooridorPjaroCampana_2');
+        map.getPane('pane_BellbirdBiologicalCooridorPjaroCampana_2').style.zIndex = 402;
+        map.getPane('pane_BellbirdBiologicalCooridorPjaroCampana_2').style['mix-blend-mode'] = 'normal';
+        var layer_BellbirdBiologicalCooridorPjaroCampana_2 = new L.geoJson(json_BellbirdBiologicalCooridorPjaroCampana_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_BellbirdBiologicalCooridorPjaroCampana_2',
+            layerName: 'layer_BellbirdBiologicalCooridorPjaroCampana_2',
+            pane: 'pane_BellbirdBiologicalCooridorPjaroCampana_2',
+            onEachFeature: pop_BellbirdBiologicalCooridorPjaroCampana_2,
+            style: style_BellbirdBiologicalCooridorPjaroCampana_2_0,
+        });
+        bounds_group.addLayer(layer_BellbirdBiologicalCooridorPjaroCampana_2);
+        map.addLayer(layer_BellbirdBiologicalCooridorPjaroCampana_2);
+        function pop_ProtectedAreasAreasProtegidas_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Nombre</strong><br />' + (feature.properties['Nombre'] !== null ? Autolinker.link(feature.properties['Nombre'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Name</th>\
+                        <td>' + (feature.properties['Name'] !== null ? Autolinker.link(feature.properties['Name'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Area in Hectares</th>\
+                        <td>' + (feature.properties['Área_has'] !== null ? Autolinker.link(feature.properties['Área_has'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+        
+        function style_ProtectedAreasAreasProtegidas_3_0() {
+            return {
+                pane: 'pane_ProtectedAreasAreasProtegidas_3',
+                opacity: 1,
+                color: 'rgba(52,114,37,0.4980392156862745)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(114,155,111,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_ProtectedAreasAreasProtegidas_3');
+        map.getPane('pane_ProtectedAreasAreasProtegidas_3').style.zIndex = 403;
+        map.getPane('pane_ProtectedAreasAreasProtegidas_3').style['mix-blend-mode'] = 'normal';
+        var layer_ProtectedAreasAreasProtegidas_3 = new L.geoJson(json_ProtectedAreasAreasProtegidas_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ProtectedAreasAreasProtegidas_3',
+            layerName: 'layer_ProtectedAreasAreasProtegidas_3',
+            pane: 'pane_ProtectedAreasAreasProtegidas_3',
+            onEachFeature: pop_ProtectedAreasAreasProtegidas_3,
+            style: style_ProtectedAreasAreasProtegidas_3_0,
+        });
+        bounds_group.addLayer(layer_ProtectedAreasAreasProtegidas_3);
+        map.addLayer(layer_ProtectedAreasAreasProtegidas_3);
+        function pop_RiversRios_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Nombre/Name</strong><br />' + (feature.properties['NOMBRE'] !== null ? Autolinker.link(feature.properties['NOMBRE'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Categoria</strong><br />' + (feature.properties['CATEGORIA'] !== null ? Autolinker.link(feature.properties['CATEGORIA'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_RiversRios_4_0() {
+            return {
+                pane: 'pane_RiversRios_4',
+                opacity: 1,
+                color: 'rgba(100,152,210,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_RiversRios_4');
+        map.getPane('pane_RiversRios_4').style.zIndex = 404;
+        map.getPane('pane_RiversRios_4').style['mix-blend-mode'] = 'normal';
+        var layer_RiversRios_4 = new L.geoJson(json_RiversRios_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_RiversRios_4',
+            layerName: 'layer_RiversRios_4',
+            pane: 'pane_RiversRios_4',
+            onEachFeature: pop_RiversRios_4,
+            style: style_RiversRios_4_0,
+        });
+        bounds_group.addLayer(layer_RiversRios_4);
+        map.addLayer(layer_RiversRios_4);
+        function pop_RoadsCaminos_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Nombre/name</strong><br />' + (feature.properties['name'] !== null ? Autolinker.link(feature.properties['name'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Length in km</strong><br />' + (feature.properties['length_km'] !== null ? Autolinker.link(feature.properties['length_km'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_RoadsCaminos_5_0(feature) {
+            switch(String(feature.properties['highway'])) {
+                case 'footway':
+                    return {
+                pane: 'pane_RoadsCaminos_5',
+                opacity: 1,
+                color: 'rgba(147,147,147,0.80)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 0.75,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'path':
+                    return {
+                pane: 'pane_RoadsCaminos_5',
+                opacity: 1,
+                color: 'rgba(147,147,147,0.80)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 0.75,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'residential':
+                    return {
+                pane: 'pane_RoadsCaminos_5',
+                opacity: 1,
+                color: 'rgba(111,111,111,1.0)',
+                dashArray: '10,5',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'secondary':
+                    return {
+                pane: 'pane_RoadsCaminos_5',
+                opacity: 1,
+                color: 'rgba(80,80,80,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'service':
+                    return {
+                pane: 'pane_RoadsCaminos_5',
+                opacity: 1,
+                color: 'rgba(147,147,147,0.80)',
+                dashArray: '10,5',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'steps':
+                    return {
+                pane: 'pane_RoadsCaminos_5',
+                opacity: 1,
+                color: 'rgba(147,147,147,0.80)',
+                dashArray: '10,5',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 0.75,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'tertiary':
+                    return {
+                pane: 'pane_RoadsCaminos_5',
+                opacity: 1,
+                color: 'rgba(80,80,80,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'track':
+                    return {
+                pane: 'pane_RoadsCaminos_5',
+                opacity: 1,
+                color: 'rgba(111,111,111,1.0)',
+                dashArray: '10,5',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'trunk':
+                    return {
+                pane: 'pane_RoadsCaminos_5',
+                opacity: 1,
+                color: 'rgba(80,80,80,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 4.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'unclassified':
+                    return {
+                pane: 'pane_RoadsCaminos_5',
+                opacity: 1,
+                color: 'rgba(147,147,147,0.80)',
+                dashArray: '10,5',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_RoadsCaminos_5',
+                opacity: 1,
+                color: 'rgba(111,111,111,1.0)',
+                dashArray: '10,5',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_RoadsCaminos_5');
+        map.getPane('pane_RoadsCaminos_5').style.zIndex = 405;
+        map.getPane('pane_RoadsCaminos_5').style['mix-blend-mode'] = 'normal';
+        var layer_RoadsCaminos_5 = new L.geoJson(json_RoadsCaminos_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_RoadsCaminos_5',
+            layerName: 'layer_RoadsCaminos_5',
+            pane: 'pane_RoadsCaminos_5',
+            onEachFeature: pop_RoadsCaminos_5,
+            style: style_RoadsCaminos_5_0,
+        });
+        bounds_group.addLayer(layer_RoadsCaminos_5);
+        map.addLayer(layer_RoadsCaminos_5);
+        function pop_SenderoPacificotrailnetwork_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Nombre/Name</strong><br />' + (feature.properties['Name'] !== null ? Autolinker.link(feature.properties['Name'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                         <td colspan="2"><strong>Length in km</strong><br />' + (feature.properties['length'] !== null ? Autolinker.link(feature.properties['length'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">terrain</th>\
+                        <td>' + (feature.properties['path type'] !== null ? Autolinker.link(feature.properties['path type'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+            layer.on({ mouseover: highlight, mouseout: resetHighlight });
+        }
+        function style_SenderoPacificotrailnetwork_6_0() {
+            return {
+                pane: 'pane_SenderoPacificotrailnetwork_6',
+                opacity: 1,
+                color: 'rgba(149,74,162,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 5.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_SenderoPacificotrailnetwork_6');
+        map.getPane('pane_SenderoPacificotrailnetwork_6').style.zIndex = 406;
+        map.getPane('pane_SenderoPacificotrailnetwork_6').style['mix-blend-mode'] = 'normal';
+        var layer_SenderoPacificotrailnetwork_6 = new L.geoJson(json_SenderoPacificotrailnetwork_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_SenderoPacificotrailnetwork_6',
+            layerName: 'layer_SenderoPacificotrailnetwork_6',
+            pane: 'pane_SenderoPacificotrailnetwork_6',
+            onEachFeature: pop_SenderoPacificotrailnetwork_6,
+            style: style_SenderoPacificotrailnetwork_6_0,
+        });
+        bounds_group.addLayer(layer_SenderoPacificotrailnetwork_6);
+        map.addLayer(layer_SenderoPacificotrailnetwork_6);
+        function pop_TownsPueblos_7(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Nombre/Name'] !== null ? Autolinker.link(feature.properties['Name'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});        
+        }
+
+        function style_TownsPueblos_7_0() {
+            return {
+                pane: 'pane_TownsPueblos_7',
+                radius: 3.6,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,0,0,1.0)',
+                interactive: false,
+            }
+        }
+        function style_TownsPueblos_7_1() {
+            return {
+                pane: 'pane_TownsPueblos_7',
+                radius: 2.4000000000000004,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_TownsPueblos_7');
+        map.getPane('pane_TownsPueblos_7').style.zIndex = 407;
+        map.getPane('pane_TownsPueblos_7').style['mix-blend-mode'] = 'normal';
+        var layer_TownsPueblos_7 = new L.geoJson.multiStyle(json_TownsPueblos_7, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_TownsPueblos_7',
+            layerName: 'layer_TownsPueblos_7',
+            pane: 'pane_TownsPueblos_7',
+            onEachFeature: pop_TownsPueblos_7,
+            pointToLayers: [function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_TownsPueblos_7_0(feature));
+            },function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_TownsPueblos_7_1(feature));
+            },
+        ]});
+        bounds_group.addLayer(layer_TownsPueblos_7);
+        map.addLayer(layer_TownsPueblos_7);
+        function pop_PointsofInterestPuntodeInteres_8(feature, layer) {
+            var popupContent = '<table>\
+            		<tr>\
+                        <td colspan="2"><strong>Nombre</strong><br />' + (feature.properties['nombre'] !== null ? Autolinker.link(feature.properties['nombre'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Name</strong><br />' + (feature.properties['name'] !== null ? Autolinker.link(feature.properties['name'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Type</strong><br />' + (feature.properties['Type'] !== null ? Autolinker.link(feature.properties['type2'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PointsofInterestPuntodeInteres_8_0(feature) {
+            switch(String(feature.properties['type2'])) {
+                case 'beach':
+                    return {
+                pane: 'pane_PointsofInterestPuntodeInteres_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/beach-11.svg',
+            iconSize: [24.7, 24.7]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'bridge':
+                    return {
+                pane: 'pane_PointsofInterestPuntodeInteres_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/bridge-black-14.svg',
+            iconSize: [24.7, 24.7]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'building':
+                    return {
+                pane: 'pane_PointsofInterestPuntodeInteres_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/building-15.svg',
+            iconSize: [24.7, 24.7]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'cafe':
+                    return {
+                pane: 'pane_PointsofInterestPuntodeInteres_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/cafe-15.svg',
+            iconSize: [24.7, 24.7]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'camp':
+                    return {
+                pane: 'pane_PointsofInterestPuntodeInteres_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/campsite-15.svg',
+            iconSize: [24.7, 24.7]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'cemetery':
+                    return {
+                pane: 'pane_PointsofInterestPuntodeInteres_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/barrier_bollard.svg',
+            iconSize: [24.7, 24.7]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'center':
+                    return {
+                pane: 'pane_PointsofInterestPuntodeInteres_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/ranger-station-black-24.svg',
+            iconSize: [24.7, 24.7]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'church':
+                    return {
+                pane: 'pane_PointsofInterestPuntodeInteres_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/religious-christian-11.svg',
+            iconSize: [20.9, 20.9]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'education':
+                    return {
+                pane: 'pane_PointsofInterestPuntodeInteres_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/ranger-station-15.svg',
+            iconSize: [24.7, 24.7]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'finca':
+                    return {
+                pane: 'pane_PointsofInterestPuntodeInteres_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/poi_embassy2.svg',
+            iconSize: [24.7, 24.7]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'food':
+                    return {
+                pane: 'pane_PointsofInterestPuntodeInteres_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/restaurant-15.svg',
+            iconSize: [24.7, 24.7]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'gate':
+                    return {
+                pane: 'pane_PointsofInterestPuntodeInteres_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/fence-11.svg',
+            iconSize: [24.7, 24.7]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'intersect':
+                    return {
+                pane: 'pane_PointsofInterestPuntodeInteres_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/poi_place_town.svg',
+            iconSize: [24.7, 24.7]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'lodging':
+                    return {
+                pane: 'pane_PointsofInterestPuntodeInteres_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/lodging-15.svg',
+            iconSize: [24.7, 24.7]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'park':
+                    return {
+                pane: 'pane_PointsofInterestPuntodeInteres_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/picnic-site-15.svg',
+            iconSize: [24.7, 24.7]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'school':
+                    return {
+                pane: 'pane_PointsofInterestPuntodeInteres_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/college-11.svg',
+            iconSize: [24.7, 24.7]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'science':
+                    return {
+                pane: 'pane_PointsofInterestPuntodeInteres_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/young-scientist-program-black-30.svg',
+            iconSize: [24.7, 24.7]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'signage':
+                    return {
+                pane: 'pane_PointsofInterestPuntodeInteres_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/amenity_information.svg',
+            iconSize: [24.7, 24.7]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'sports':
+                    return {
+                pane: 'pane_PointsofInterestPuntodeInteres_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/sport_soccer.svg',
+            iconSize: [24.7, 24.7]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'store':
+                    return {
+                pane: 'pane_PointsofInterestPuntodeInteres_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/convenience-11.svg',
+            iconSize: [24.7, 24.7]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'vista':
+                    return {
+                pane: 'pane_PointsofInterestPuntodeInteres_8',
+        rotationAngle: -0.8290317500000001,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/viewpoint-15.svg',
+            iconSize: [24.7, 24.7]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'water':
+                    return {
+                pane: 'pane_PointsofInterestPuntodeInteres_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/water-11.svg',
+            iconSize: [24.7, 24.7]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'crossing':
+                    return {
+                pane: 'pane_PointsofInterestPuntodeInteres_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/bridge-black-14.svg',
+            iconSize: [24.7, 24.7]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'waterfall':
+                    return {
+                pane: 'pane_PointsofInterestPuntodeInteres_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/waterfall-black-24.svg',
+            iconSize: [28.5, 28.5]
+        }),
+                interactive: true,
+            }
+                    break;
+                case 'shelter':
+                    return {
+                pane: 'pane_PointsofInterestPuntodeInteres_8',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/sleeping-shelter-black-30.svg',
+            iconSize: [24.7, 24.7]
+        }),
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_PointsofInterestPuntodeInteres_8');
+        map.getPane('pane_PointsofInterestPuntodeInteres_8').style.zIndex = 408;
+        map.getPane('pane_PointsofInterestPuntodeInteres_8').style['mix-blend-mode'] = 'normal';
+        var layer_PointsofInterestPuntodeInteres_8 = new L.geoJson(json_PointsofInterestPuntodeInteres_8, {
+        	minZoom: 13,
+        	maxZoom: 19,
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_PointsofInterestPuntodeInteres_8',
+            layerName: 'layer_PointsofInterestPuntodeInteres_8',
+            pane: 'pane_PointsofInterestPuntodeInteres_8',
+            onEachFeature: pop_PointsofInterestPuntodeInteres_8,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_PointsofInterestPuntodeInteres_8_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_PointsofInterestPuntodeInteres_8);
+        map.addLayer(layer_PointsofInterestPuntodeInteres_8);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'Points of Interest/Punto de Interes<br /><table><tr><td style="text-align: center;"><img src="legend/PointsofInterestPuntodeInteres_8_beach0.png" /></td><td>beach</td></tr><tr><td style="text-align: center;"><img src="legend/PointsofInterestPuntodeInteres_8_bridge1.png" /></td><td>bridge</td></tr><tr><td style="text-align: center;"><img src="legend/PointsofInterestPuntodeInteres_8_building2.png" /></td><td>building</td></tr><tr><td style="text-align: center;"><img src="legend/PointsofInterestPuntodeInteres_8_cafe3.png" /></td><td>cafe</td></tr><tr><td style="text-align: center;"><img src="legend/PointsofInterestPuntodeInteres_8_camp4.png" /></td><td>camp</td></tr><tr><td style="text-align: center;"><img src="legend/PointsofInterestPuntodeInteres_8_cemetery5.png" /></td><td>cemetery</td></tr><tr><td style="text-align: center;"><img src="legend/PointsofInterestPuntodeInteres_8_center6.png" /></td><td>center</td></tr><tr><td style="text-align: center;"><img src="legend/PointsofInterestPuntodeInteres_8_church7.png" /></td><td>church</td></tr><tr><td style="text-align: center;"><img src="legend/PointsofInterestPuntodeInteres_8_education8.png" /></td><td>education</td></tr><tr><td style="text-align: center;"><img src="legend/PointsofInterestPuntodeInteres_8_finca9.png" /></td><td>finca</td></tr><tr><td style="text-align: center;"><img src="legend/PointsofInterestPuntodeInteres_8_food10.png" /></td><td>food</td></tr><tr><td style="text-align: center;"><img src="legend/PointsofInterestPuntodeInteres_8_gate11.png" /></td><td>gate</td></tr><tr><td style="text-align: center;"><img src="legend/PointsofInterestPuntodeInteres_8_intersect12.png" /></td><td>intersect</td></tr><tr><td style="text-align: center;"><img src="legend/PointsofInterestPuntodeInteres_8_lodging13.png" /></td><td>lodging</td></tr><tr><td style="text-align: center;"><img src="legend/PointsofInterestPuntodeInteres_8_park14.png" /></td><td>park</td></tr><tr><td style="text-align: center;"><img src="legend/PointsofInterestPuntodeInteres_8_school15.png" /></td><td>school</td></tr><tr><td style="text-align: center;"><img src="legend/PointsofInterestPuntodeInteres_8_science16.png" /></td><td>science</td></tr><tr><td style="text-align: center;"><img src="legend/PointsofInterestPuntodeInteres_8_signage17.png" /></td><td>signage</td></tr><tr><td style="text-align: center;"><img src="legend/PointsofInterestPuntodeInteres_8_sports18.png" /></td><td>sports</td></tr><tr><td style="text-align: center;"><img src="legend/PointsofInterestPuntodeInteres_8_store19.png" /></td><td>store</td></tr><tr><td style="text-align: center;"><img src="legend/PointsofInterestPuntodeInteres_8_vista20.png" /></td><td>vista</td></tr><tr><td style="text-align: center;"><img src="legend/PointsofInterestPuntodeInteres_8_water21.png" /></td><td>water</td></tr><tr><td style="text-align: center;"><img src="legend/PointsofInterestPuntodeInteres_8_crossing22.png" /></td><td>crossing</td></tr><tr><td style="text-align: center;"><img src="legend/PointsofInterestPuntodeInteres_8_waterfall23.png" /></td><td>waterfall</td></tr><tr><td style="text-align: center;"><img src="legend/PointsofInterestPuntodeInteres_8_shelter24.png" /></td><td>shelter</td></tr></table>': layer_PointsofInterestPuntodeInteres_8,'<img src="legend/TownsPueblos_7.png" /> Towns/Pueblos': layer_TownsPueblos_7,'<img src="legend/SenderoPacificotrailnetwork_6.png" /> Sendero Pacifico trail network': layer_SenderoPacificotrailnetwork_6,'Roads/Caminos<br /><table><tr><td style="text-align: center;"><img src="legend/RoadsCaminos_5_footway0.png" /></td><td>footway</td></tr><tr><td style="text-align: center;"><img src="legend/RoadsCaminos_5_path1.png" /></td><td>path</td></tr><tr><td style="text-align: center;"><img src="legend/RoadsCaminos_5_residential2.png" /></td><td>residential</td></tr><tr><td style="text-align: center;"><img src="legend/RoadsCaminos_5_secondary3.png" /></td><td>secondary</td></tr><tr><td style="text-align: center;"><img src="legend/RoadsCaminos_5_service4.png" /></td><td>service</td></tr><tr><td style="text-align: center;"><img src="legend/RoadsCaminos_5_steps5.png" /></td><td>steps</td></tr><tr><td style="text-align: center;"><img src="legend/RoadsCaminos_5_tertiary6.png" /></td><td>tertiary</td></tr><tr><td style="text-align: center;"><img src="legend/RoadsCaminos_5_track7.png" /></td><td>track</td></tr><tr><td style="text-align: center;"><img src="legend/RoadsCaminos_5_trunk8.png" /></td><td>trunk</td></tr><tr><td style="text-align: center;"><img src="legend/RoadsCaminos_5_unclassified9.png" /></td><td>unclassified</td></tr><tr><td style="text-align: center;"><img src="legend/RoadsCaminos_5_10.png" /></td><td></td></tr></table>': layer_RoadsCaminos_5,'<img src="legend/RiversRios_4.png" /> Rivers/Rios': layer_RiversRios_4,'<img src="legend/ProtectedAreasAreasProtegidas_3.png" /> Protected Areas/Areas Protegidas': layer_ProtectedAreasAreasProtegidas_3,'<img src="legend/BellbirdBiologicalCooridorPjaroCampana_2.png" /> Bellbird Biological Cooridor/Pájaro Campana': layer_BellbirdBiologicalCooridorPjaroCampana_2,"OSM Standard": layer_OSMStandard_0,}).addTo(map);  
+        setBounds();
+        var i = 0;
+       layer_TownsPueblos_7.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Name'] !== null?String('<div style="color: #5c5c5c; font-size: 10pt; font-family: \'Helvetica Neue\', sans-serif;">' + layer.feature.properties['Name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_TownsPueblos_6'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+      L.control.scale( {
+      imperial: false,
+      metric: true
+      } ).addTo(map);
+      
+        </script>
+    </body>
+</html>
